@@ -1,5 +1,6 @@
 var fs      = require('fs')
   , net     = require('net')
+  , http    = require('http')
   , express = require('express')
 
 var alias     = require('./lib/alias')
@@ -7,8 +8,9 @@ var alias     = require('./lib/alias')
   , formatter = require('./lib/formatter')
 
 var config = JSON.parse(fs.readFileSync('config/config.json', 'utf8'))
-  , app    = express.createServer()
-  , io     = require('socket.io').listen(app)
+  , app    = express()
+  , server = http.createServer(app)
+  , io     = require('socket.io').listen(server)
 
 var createResponse = function(command, data) {
   return { command: command, data: data }
@@ -33,15 +35,15 @@ app.get('/', function(req, res) {
 io.sockets.on('connection', function(socket) {
   var mud = net.createConnection(config.port, config.host)
   mud.setEncoding('utf8')
-  
-  log(socket.sessionId + ' connected to ' + config.host + ':' + config.port)
+
+  log(socket.id + ' connected to ' + config.host + ':' + config.port)
 
   mud.addListener('data', function(data) {
     var commands  = trigger.scan(data)
       , formatted = formatter.go(data)
 
     socket.emit('message', createResponse('updateWorld', formatted))
-    
+
     if (commands) {
       for (var i = 0; i < commands.length; i++) {
         mud.write(commands[i])
@@ -68,4 +70,4 @@ io.sockets.on('connection', function(socket) {
   })
 })
 
-app.listen(6660)
+server.listen(6660)
