@@ -1,7 +1,7 @@
 $(function() {
   var world   = new World('#world')
-    , socket  = io.connect('http://localhost')
-  
+    , socket  = io.connect(window.location.hostname)
+
   var resizeUI = function() {
     $('#input input').width(window.innerWidth - 30)
     $('.output').height(window.innerHeight - 115)
@@ -18,7 +18,7 @@ $(function() {
         socket.emit('message', $('input').val())
         world.selfMesssage($('input').val())
         world.updateHistory($('input').val())
-        
+
         $('input').val('')
       } else if (event.keyCode == 38) {
         if (world.history[world.current - 1]) {
