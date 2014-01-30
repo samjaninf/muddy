@@ -5,7 +5,6 @@ body {
   font-size: 14px;
   color: #909090;
   background: #272727;
-  background-image: url('/img/background.png');
 }
 
 @font-face {
@@ -22,33 +21,6 @@ h1, h2, h3, h4, p, ul, li {
 ul {
   list-style-type: none;
 }
-
-#header {
-  padding: 15px;
-  height: 20px;
-  background: url('/img/header.png') repeat-x;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.30);
-  -moz-box-shadow: 0 0 15px rgba(0, 0, 0, 0.30);
-  -webkit-box-shadow: 0 0 15px rgba(0, 0, 0, 0.30);
-}
-
-  #header h1 {
-    float: left;
-    margin: 2px 15px 0 0;
-    width: 75px;
-    height: 25px;
-    background: url('/img/logo.png') repeat-x;
-    text-indent: -5000em;
-  }
-
-  #header p {
-    margin: 5px 0 0 0;
-    float: left;
-  }
-
-    #header p span {
-      color: #ffffff;
-    }
 
 #client {
   width: 100%;
@@ -71,9 +43,9 @@ ul {
   bottom: 0;
   padding: 10px;
   height: 25px;
-  background: #1a1a1a url('/img/input.png') repeat-x;
+  background: #202020;
 }
-  
+
   #input input {
     padding: 3px;
     font-family: DroidSansMono;
