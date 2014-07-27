@@ -1,5 +1,7 @@
 # muddy
 
+**DEAD:** I'm too lazy to work on this anymore. Plus, I'm kinda toying with the idea of making my own little browser MUD instead.
+
 A MUD client in your browser usin' node.js & websockets.
 
 This has only been tested with [Aardwolf](http://aardwolf.com),
